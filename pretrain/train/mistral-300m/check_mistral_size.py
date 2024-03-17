@@ -1,6 +1,4 @@
-# from transformers import Pre
-
-from transformers import AutoModelForCausalLM, MistralForCausalLM, MistralConfig   
+from transformers import MistralForCausalLM, MistralConfig
 import json
 
 def load_config_from_json(config_file):
@@ -9,24 +7,18 @@ def load_config_from_json(config_file):
         config = MistralConfig.from_dict(config)
     return config
 
-config = load_config_from_json(config_file = "config.json")    
+def get_model_size(model):
+    model_size = sum(t.numel() for t in model.parameters())
+    return model_size / 1000**2  # Convert to millions
+
+# Load Mistral config
+config = load_config_from_json(config_file="config.json")
 print(config)
 
+# Create Mistral model
 model = MistralForCausalLM(config)
 print(model)
 
-model_size = sum(t.numel() for t in model.parameters())
-print(f"Mistral-300m size: {model_size/1000**2:.1f}M parameters")
-
-
-from transformers import AutoTokenizer, GPT2LMHeadModel, AutoConfig
-
-config = AutoConfig.from_pretrained(
-    "gpt2-medium"
-)
-
-model = GPT2LMHeadModel(config)
-print(config)
-print(model)
-model_size = sum(t.numel() for t in model.parameters())
-print(f"GPT-2 size: {model_size/1000**2:.1f}M parameters")
+# Calculate and print model size
+mistral_size = get_model_size(model)
+print(f"Mistral-300m size: {mistral_size:.1f}M parameters")

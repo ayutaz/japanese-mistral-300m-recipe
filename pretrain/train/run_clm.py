@@ -421,6 +421,7 @@ def main():
         "token": model_args.token,
         "trust_remote_code": model_args.trust_remote_code,
     }
+    print(tokenizer_kwargs)
     if model_args.tokenizer_name:
         tokenizer = AutoTokenizer.from_pretrained(model_args.tokenizer_name, **tokenizer_kwargs)
     elif model_args.model_name_or_path:

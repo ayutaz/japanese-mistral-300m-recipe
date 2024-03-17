@@ -1,6 +1,6 @@
 {
     "fp16": {
-        "enabled": "auto",
+        "enabled": "true",
         "loss_scale": 0.0,
         "loss_scale_window": 1000,
         "initial_scale_power": 16,
@@ -9,7 +9,7 @@
     },
     
     "bf16": {
-        "enabled": "auto"
+        "enabled": "true"
     },
     
 
@@ -46,7 +46,7 @@
         "overlap_comm": true,
         "contiguous_gradients": true,
         "sub_group_size": 1e9,
-        "reduce_bucket_size": "auto",
+        "reduce_bucket_size": "5e10",
         "stage3_prefetch_bucket_size": "auto",
         "stage3_param_persistence_threshold": "auto",
         "stage3_max_live_parameters": 1e9,
@@ -58,9 +58,9 @@
     "dump_state": true,
     "comms_logger": {
       "enabled": true,
-      "verbose": false,
+      "verbose": true,
       "prof_all": true,
-      "debug": false
+      "debug": true
     },
     
     "gradient_accumulation_steps": "auto",
